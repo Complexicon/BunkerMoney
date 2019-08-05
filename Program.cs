@@ -14,7 +14,7 @@ namespace BunkerMoney {
 
 		static Mem Mem;
 
-		static string url = "https://raw.githubusercontent.com/Complexicon/BunkerMoney/master/BunkerMoney/offsets.ini";
+		static string url = "https://raw.githubusercontent.com/Complexicon/BunkerMoney/master/offsets.ini";
 
 		[STAThread]
 		static void Main() {
