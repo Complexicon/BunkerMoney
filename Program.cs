@@ -9,7 +9,8 @@ using static System.Windows.Forms.DialogResult;
 namespace BunkerMoney {
 	static class Program {
 
-		static int[] bunkerOff = new int[] { 0x1180, 0x4128 };
+		static int[] bunkerOff = new int[] { 0x1180, 0x41B8 };
+		static int limit = 0x1C‬;
 		static long GlobalPTR;
 
 		static Mem Mem;
@@ -34,8 +35,9 @@ namespace BunkerMoney {
 					}
 					bunkerOff[0] = cfgDict["offset1"];
 					bunkerOff[1] = cfgDict["offset2"];
+					limit = cfgDict["limitMil"];
 				} catch {
-					MessageBox.Show("Couldn't load Remote Offsets! Using local Offsets (GTA 1.46)!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					MessageBox.Show("Couldn't load Remote Offsets! Using local Offsets (GTA 1.50)!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				}
 			}
 
@@ -53,7 +55,7 @@ namespace BunkerMoney {
 
 			if(priceDiag.ShowDialog() == OK && amtDiag.ShowDialog() == OK) {
 				try {
-					Mem.WriteInt(GlobalPTR - 0x128, bunkerOff, Convert.ToInt32((1000000 / (priceDiag.price / amtDiag.amt)) * 4.5));
+					Mem.WriteInt(GlobalPTR - 0x128, bunkerOff, Convert.ToInt32((100000 / (priceDiag.price / amtDiag.amt)) * limit));
 					MessageBox.Show("Done! Deliver Vehlicle(s) and Enjoy :) Program will now close!", "Yay!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 				} catch { MessageBox.Show("There was an Error during the Procedure!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
