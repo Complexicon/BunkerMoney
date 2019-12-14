@@ -10,8 +10,8 @@ namespace BunkerMoney {
 	static class Program {
 
 		static int[] bunkerOff = new int[] { 0x1180, 0x41B8 };
-		static int limit = 0x1C‬;
 		static long GlobalPTR;
+		static int limit = 28;
 
 		static Mem Mem;
 
@@ -35,7 +35,7 @@ namespace BunkerMoney {
 					}
 					bunkerOff[0] = cfgDict["offset1"];
 					bunkerOff[1] = cfgDict["offset2"];
-					limit = cfgDict["limitMil"];
+					limit = cfgDict["limit"];
 				} catch {
 					MessageBox.Show("Couldn't load Remote Offsets! Using local Offsets (GTA 1.50)!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				}
