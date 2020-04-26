@@ -73,18 +73,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AmtDiag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AmtDiag.Designer.cs">
-      <DependentUpon>AmtDiag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PriceDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PriceDialog.Designer.cs">
-      <DependentUpon>PriceDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
