@@ -276,8 +276,8 @@ namespace BunkerMoney {
 					if(Mem.ReadInt(BlipPTR + (i * 8), new int[] { 0x40 }) == 1 && ((objDetect == 1) || (objDetect == 66) || (objDetect == 60))) {
 						return new Location {
 							x = Mem.ReadFloat(BlipPTR + (i * 8), new int[] { 0x10 }),
-							y = Mem.ReadFloat(BlipPTR + (i * 8), new int[] { 0x14 }) + 10F,
-							z = Mem.ReadFloat(BlipPTR + (i * 8), new int[] { 0x18 })
+							y = Mem.ReadFloat(BlipPTR + (i * 8), new int[] { 0x14 }),
+							z = Mem.ReadFloat(BlipPTR + (i * 8), new int[] { 0x18 }) + 10F
 						};
 					}
 				}
