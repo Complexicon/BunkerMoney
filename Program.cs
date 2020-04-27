@@ -73,16 +73,23 @@ namespace BunkerMoney {
 
 				if(GetAsyncKeyState(Keys.B) != 0) {
 
-					//READ last money -- todo: fix garbage data
+					//READ last money
 					if(PressedOnce(Keys.R)) {
 						lastMoneyInBunker = Mem.ReadInt(GlobalPTR - 0x128, Offset.moneyInBunker);
+						if(lastMoneyInBunker > 5000000 || lastMoneyInBunker < 1000) 
+							MessageBox.Show("Values are Probably not Correct.\nMaybe try again? if it persists restart GTA!", "WARN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 						Toggle();
 						debug.Text = "lastMoneyInBunker: " + lastMoneyInBunker + "$";
 					}
 
 					//PATCH packages
 					if(PressedOnce(Keys.P)) {
-						int packetAmtForMil = Convert.ToInt32(100000 / ((lastMoneyInBunker + (lastMoneyInBunker * bonusCompensation)) / Mem.ReadInt(GlobalPTR - 0x128, Offset.packetMax)));
+						uint packetMax = Mem.ReadUInt(GlobalPTR - 0x128, Offset.packetMax);
+						if(packetMax > 0xff) {
+							MessageBox.Show("Couldn't read correct values!\nTry restarting GTA. Closing!", "WARN", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							Environment.Exit(0);
+						}
+						int packetAmtForMil = Convert.ToInt32(100000 / ((lastMoneyInBunker + (lastMoneyInBunker * bonusCompensation)) / packetMax));
 						Mem.Write(GlobalPTR - 0x128, Offset.packet, packetAmtForMil * limit);
 
 						Activate();
